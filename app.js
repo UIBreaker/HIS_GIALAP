@@ -104,7 +104,7 @@
   label('Ngày đăng ký', 307, 4, 97, {star: true, for: 'registration_date'});
   input('registration_date', 404, 4, 76, '15/10/2026', { maxLength: 10, title: 'Định dạng dd/mm/yyyy' });
   input('registration_time', 480, 4, 42, '13:38', {maxLength: 5, title: 'HH:mm'});
-  select('registration_time_list', 522, 4, 14, [''], '', {title: 'Chọn giờ'});
+  select('registration_time_list', 522, 4, 11, [''], '', {title: 'Chọn giờ'});
   label('Số thứ tự:', 533, 4, 62, {for: 'queue_number'});
   input('queue_number', 594, 4, 52, '39', {numeric: true});
   label('làm?', 648, 4, 42, {muted: true});
@@ -117,10 +117,10 @@
   label('Họ và tên:', 8, 35, 86, {star: true, for: 'full_name'});
   input('full_name', 95, 35, 207, 'LÂM NGỌC THỦY TIÊN');
   label('Ngày sinh:', 307, 35, 97, {star: true, for: 'birth_day'});
-  input('birth_day', 404, 35, 25, '14', {maxLength: 2, numeric:true, title:'Ngày sinh (ngày)'});
+  input('birth_day', 404, 35, 25, '14', {maxLength: 2, numeric:true, title:'Ngày sinh theo định dạng dd/MM/yyyy (ngày)'});
   input('birth_month', 429, 35, 25, '05', {maxLength: 2, numeric:true, title:'Ngày sinh (tháng)'});
   input('birth_year', 454, 35, 43, '1986', {maxLength: 4, numeric:true, title:'Ngày sinh (năm)'});
-  input('birth_extra', 497, 35, 39, '');
+  input('birth_extra', 497, 35, 37, '');
   label('Giới tính', 535, 35, 56, {star: true, for: 'gender'});
   select('gender', 592, 35, 56, ['', 'Nam', 'Nữ', 'Khác'], 'Nữ');
   label('Dân tộc', 692, 35, 55, {star: true, for: 'ethnicity'});
