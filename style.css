@@ -41,7 +41,7 @@ h1 { text-align: center; font-size: 20px; font-weight: 700; line-height: 25px; m
 .his-frame .divider { position: absolute; left: 0; width: 1018px; height: 3px; background: #547cb9; }
 .his-frame .panel { position: absolute; border: 1px solid #999; pointer-events: none; }
 .his-frame .fingerprint { position: absolute; left: 14px; top: 6px; width: 15px; height: 19px; }
-.his-frame .note { font-size: 11px; }
+.his-frame .note { font-size: 11px; line-height: 14px; }
 .his-frame .age { font-size: 11px; color: #24168e; font-weight: normal; }
 .his-frame .mini-button { position: absolute; min-height: 21px; border: 1px solid #999; background: #f9f9f9; padding: 0 5px; cursor: pointer; font-size: 12px; font-family: Arial; }
 .his-frame .mini-button:focus-visible { outline: 2px solid #3577c5; }

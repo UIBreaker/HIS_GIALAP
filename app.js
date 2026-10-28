@@ -98,7 +98,7 @@
 
   // ────────────────── 1. THÔNG TIN BỆNH NHÂN ──────────────────
   label('Mã BN:', 43, 4, 53, {for: 'patient_code'});
-  input('patient_code', 95, 4, 77, '0000068019', { numeric: true, maxLength: 15 });
+  input('patient_code', 95, 4, 73, '0000068019', { numeric: true, maxLength: 15 });
   label('MãKCB:', 173, 4, 50, {for: 'visit_code'});
   input('visit_code', 222, 4, 80, '2600133487', { numeric: true, maxLength: 18 });
   label('Ngày đăng ký', 307, 4, 97, {star: true, for: 'registration_date'});
@@ -108,7 +108,7 @@
   label('Số thứ tự:', 533, 4, 62, {for: 'queue_number'});
   input('queue_number', 594, 4, 52, '39', {numeric: true});
   label('làm?', 648, 4, 42, {muted: true});
-  note('(40 tuổi)', 651, 24, 85, 'age');
+  note('(40 tuổi)', 651, 35, 40, 'age');
   checkbox('inpatient', 755, 4, 'Nội trú', {w: 68});
   checkbox('transferred', 823, 4, 'C.Viện', {w: 66});
   checkbox('discharged', 889, 4, 'R.Viện', {w: 64, checked: true});
@@ -117,7 +117,6 @@
   label('Họ và tên:', 8, 35, 86, {star: true, for: 'full_name'});
   input('full_name', 95, 35, 207, 'LÂM NGỌC THỦY TIÊN');
   label('Ngày sinh:', 307, 35, 97, {star: true, for: 'birth_day'});
-  note('(dd/MM/yyyy)', 307, 52, 100, 'muted');
   input('birth_day', 404, 35, 25, '14', {maxLength: 2, numeric:true, title:'Ngày sinh (ngày)'});
   input('birth_month', 429, 35, 25, '05', {maxLength: 2, numeric:true, title:'Ngày sinh (tháng)'});
   input('birth_year', 454, 35, 43, '1986', {maxLength: 4, numeric:true, title:'Ngày sinh (năm)'});
