@@ -363,7 +363,7 @@ h1 { text-align: center; font-size: 20px; font-weight: 700; line-height: 25px; m
   input('registration_date', 404, 4, 76, '15/10/2026', { maxLength: 10, title: 'Định dạng dd/mm/yyyy' });
   input('registration_time', 480, 4, 42, '13:38', {maxLength: 5, title: 'HH:mm'});
   select('registration_time_list', 522, 4, 11, [''], '', {title: 'Chọn giờ'});
-  label('Số thứ tự:', 533, 4, 62, {for: 'queue_number'});
+  label('Số thứ tự:', 536, 4, 59, {for: 'queue_number'});
   input('queue_number', 594, 4, 52, '39', {numeric: true});
   label('làm?', 648, 4, 42, {muted: true});
   note('(40 tuổi)', 651, 35, 40, 'age');
@@ -503,7 +503,7 @@ h1 { text-align: center; font-size: 20px; font-weight: 700; line-height: 25px; m
   input('leader', 404, 402, 136, '', {disabled:true});
   label('Khoa:', 542, 402, 47, {muted:true, for:'referred_department'});
   input('referred_department', 589, 402, 121, '', {disabled:true});
-  label('Số:', 710, 402, 38, {muted:true, for:'transfer_number'});
+  label('Số:', 713, 402, 35, {muted:true, for:'transfer_number'});
   input('transfer_number', 748, 402, 77, '', {disabled:true});
   label('Ngày:', 826, 402, 62, {muted:true, for:'transfer_date'});
   input('transfer_date', 888, 402, 79, '', {disabled:true});
@@ -523,7 +523,7 @@ h1 { text-align: center; font-size: 20px; font-weight: 700; line-height: 25px; m
   input('contact_name', 95, 459, 207);
   label('Số CCCD:', 312, 459, 92, {for:'contact_id'});
   input('contact_id', 404, 459, 98, '', {numeric:true});
-  label('ĐT:', 502, 459, 45, {for:'contact_phone'});
+  label('ĐT:', 505, 459, 45, {for:'contact_phone'});
   input('contact_phone', 547, 459, 101, '', {type:'tel'});
   label('Địa chỉ liên hệ:', 655, 459, 93, {for:'contact_address'});
   input('contact_address', 748, 459, 264);
