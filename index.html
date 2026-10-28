@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Website giả lập đăng ký khám chữa bệnh: quét CCCD ngẫu nhiên và xem chi tiết danh sách hồ sơ, chạy offline.">
+  <title>Đăng ký khám chữa bệnh – Mô phỏng HIS & quét CCCD</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <main>
+    <h1>ĐĂNG KÝ KHÁM CHỮA BỆNH</h1>
+    <p class="list-shortcut"><a href="#registration-list">↓ Xem dữ liệu đã lưu</a></p>
+    <div class="stage-scroll" role="region" aria-label="Form đăng ký khám chữa bệnh; cuộn ngang nếu màn hình nhỏ" tabindex="0">
+      <form id="registration-form" class="his-frame" autocomplete="off" novalidate>
+        <!-- Các trường HTML được tạo bằng app.js sau khi DOM đã sẵn sàng (script defer). -->
+      </form>
+    </div>
+
+    <section class="scanner-section" aria-labelledby="scanner-title">
+      <div class="scanner-heading">
+        <div>
+          <h2 id="scanner-title">Giả lập quét thẻ CCCD <span class="demo-pill">DỮ LIỆU GIẢ</span></h2>
+          <p>Nhấn quét để sinh một công dân ngẫu nhiên và tự điền vào form phía trên. Không cần đầu đọc hoặc CCCD thật.</p>
+        </div>
+        <div class="scanner-controls">
+          <button id="scan-cccd" class="scan-primary" type="button">▣ Quét CCCD ngẫu nhiên</button>
+          <button id="generate-records" type="button">＋ Tạo 10 hồ sơ mẫu</button>
+        </div>
+      </div>
+      <div class="scan-content">
+        <div class="mock-card" id="mock-card" aria-live="polite">
+          <div class="mock-card-top"><strong>THẺ THÔNG TIN CÔNG DÂN</strong><span>DEMO / TEST</span></div>
+          <div class="mock-card-body">
+            <div class="mock-avatar" aria-hidden="true">◉</div>
+            <div class="mock-card-info">
+              <span>Họ và tên</span><strong id="card-full-name">CHƯA QUÉT</strong>
+              <span>Số CCCD giả lập</span><strong id="card-national-id">999 ••• ••• •••</strong>
+              <span>Ngày sinh · Giới tính</span><strong id="card-birth">—</strong>
+              <span>Địa chỉ thường trú</span><strong id="card-address">—</strong>
+            </div>
+          </div>
+          <div class="mock-card-bottom">MÔ PHỎNG – KHÔNG PHẢI GIẤY TỜ TÙY THÂN THẬT</div>
+        </div>
+        <div class="scanner-explanation">
+          <h3>Kết quả quét</h3>
+          <p id="scan-result" role="status">Chưa có lượt quét. Nhấn <strong>Quét CCCD ngẫu nhiên</strong> để thử.</p>
+          <div class="scan-steps"><span>1. Quét giả lập</span><span>2. Kiểm tra form</span><span>3. Lưu bản ghi</span><span>4. Xem chi tiết</span></div>
+          <p class="scanner-note">Số CCCD thử nghiệm luôn bắt đầu bằng <strong>999</strong> (mã không hợp lệ cho tỉnh/thành trên CCCD thật). Tên, ngày sinh, địa chỉ và số điện thoại đều được tạo ngẫu nhiên.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="actions" aria-label="Thao tác trên form">
+      <div class="button-group">
+        <button type="submit" form="registration-form" class="primary">💾 Lưu bản ghi</button>
+        <button id="new-record" type="button">＋ Nhập mới</button>
+        <button id="reset-demo" type="button">↺ Khôi phục mẫu ảnh</button>
+        <button id="export-json" type="button">↓ Xuất JSON</button>
+        <button id="export-csv" type="button">↓ Xuất CSV</button>
+      </div>
+      <p id="status-message" class="status" aria-live="polite"></p>
+      <small>Dữ liệu giả lập được lưu cục bộ trong trình duyệt bằng localStorage. Không kết nối máy quét, cơ sở dữ liệu dân cư hoặc HIS thật.</small>
+    </section>
+
+    <section class="records-section" id="registration-list" aria-label="Danh sách hồ sơ đã lưu">
+      <div class="section-header">
+        <div>
+          <h2>Danh sách đăng ký <span id="record-count">(0)</span></h2>
+          <p>Nhấn <strong>Xem chi tiết</strong> để xem thông tin đầy đủ của một lượt đăng ký.</p>
+        </div>
+        <div class="records-filters">
+          <button id="delete-all" class="delete-all" type="button">Xóa toàn bộ hồ sơ</button>
+          <input id="search-records" type="search" placeholder="Tìm tên, mã BN, CCCD, số điện thoại…" aria-label="Tìm hồ sơ">
+          <select id="filter-source" aria-label="Lọc nguồn đăng ký"><option value="">Tất cả nguồn</option><option value="Quét CCCD giả lập">Quét CCCD giả lập</option><option value="Dữ liệu mẫu">Dữ liệu mẫu</option><option value="Nhập thủ công">Nhập thủ công</option></select>
+        </div>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>STT</th><th>Mã BN</th><th>Họ và tên</th><th>Ngày sinh</th><th>Số CCCD</th><th>Số điện thoại</th><th>Ngày ĐK</th><th>Phòng khám</th><th>Nguồn</th><th>Thao tác</th></tr></thead>
+          <tbody id="records-body"><tr><td colspan="10" class="empty">Chưa có hồ sơ nào được lưu.</td></tr></tbody>
+        </table>
+      </div>
+      <p class="table-tip">Có <span id="visible-count">0</span> hồ sơ đang hiển thị. Nhấn tên hoặc Xem chi tiết để xem các trường đã nhập; nút Xóa sẽ xóa ngay từng hồ sơ.</p>
+    </section>
+  </main>
+
+  <dialog id="record-detail-dialog" class="detail-dialog" aria-labelledby="detail-title">
+    <div class="detail-header">
+      <div><span class="detail-eyebrow">HỒ SƠ ĐĂNG KÝ KHÁM CHỮA BỆNH</span><h2 id="detail-title">Chi tiết hồ sơ</h2><p id="detail-subtitle"></p></div>
+      <button type="button" id="close-detail" class="detail-close" aria-label="Đóng cửa sổ">✕</button>
+    </div>
+    <div class="detail-toolbar">
+      <label class="show-all"><input id="show-all-detail" type="checkbox"> Hiển thị cả trường chưa nhập</label>
+      <span class="demo-pill">DỮ LIỆU MÔ PHỎNG</span>
+    </div>
+    <div class="detail-content" id="detail-content"></div>
+    <div class="detail-actions">
+      <button id="download-one" type="button">↓ Xuất JSON hồ sơ</button>
+      <button id="edit-from-detail" type="button" class="primary">✎ Chỉnh sửa hồ sơ</button>
+      <button id="close-detail-footer" type="button">Đóng</button>
+    </div>
+  </dialog>
+</body>
+</html>
