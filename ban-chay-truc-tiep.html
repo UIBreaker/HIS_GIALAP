@@ -11,9 +11,9 @@
 body { margin: 0; min-width: 320px; font-family: Arial, Tahoma, sans-serif; background: #eee; }
 main { padding: 0 12px 36px; }
 h1 { text-align: center; font-size: 20px; font-weight: 700; line-height: 25px; margin: 19px 0 40px; }
-.stage-scroll { max-width: 1020px; width: 100%; margin: 0 auto; overflow-x: auto; overflow-y: hidden; }
+.stage-scroll { max-width: 1173px; width: 100%; margin: 0 auto; overflow-x: auto; overflow-y: hidden; }
 .his-frame {
-  width: 1020px; height: 514px; position: relative; display: block;
+  width: 1173px; height: 514px; position: relative; display: block;
   background: #eee; border: 1px solid #7f7f7f; font-family: Arial, Tahoma, sans-serif;
   font-size: 12.5px; line-height: normal; flex-shrink: 0;
 }
@@ -46,7 +46,7 @@ h1 { text-align: center; font-size: 20px; font-weight: 700; line-height: 25px; m
 .his-frame .checkbox-field.muted { color: #9a9faa; }
 .his-frame .checkbox-field.blue { color: blue; }
 .his-frame .checkbox-field.red { color: red; }
-.his-frame .divider { position: absolute; left: 0; width: 1018px; height: 3px; background: #547cb9; }
+.his-frame .divider { position: absolute; left: 0; width: 100%; height: 3px; background: #547cb9; }
 .his-frame .panel { position: absolute; border: 1px solid #999; pointer-events: none; }
 .his-frame .fingerprint { position: absolute; left: 14px; top: 6px; width: 15px; height: 19px; }
 .his-frame .note { font-size: 11px; line-height: 14px; }
@@ -257,7 +257,7 @@ h1 { text-align: center; font-size: 20px; font-weight: 700; line-height: 25px; m
 <script>
 'use strict';
 
-// HIS form mô phỏng. Mọi tọa độ tính theo pixel tương đối với khung 1020 × 514.
+// HIS form mô phỏng. Tọa độ gốc được giãn ngang để tạo khoảng cách giữa các trường.
 // Các control là <input>, <select>, <button> HTML THẬT, không phải ảnh nền.
 (() => {
   const form = document.getElementById('registration-form');
@@ -273,9 +273,10 @@ h1 { text-align: center; font-size: 20px; font-weight: 700; line-height: 25px; m
   let records = [];
 
   function pos(el, x, y, w, h) {
-    el.style.left = `${x}px`;
+    const field = el.matches('input:not([type=checkbox]), select');
+    el.style.left = `${x * 1.15 + (field ? 2 : 0)}px`;
     el.style.top = `${y}px`;
-    if (w !== undefined) el.style.width = `${w}px`;
+    if (w !== undefined) el.style.width = `${w * 1.15 - (field ? 4 : 0)}px`;
     if (h !== undefined) el.style.height = `${h}px`;
     return el;
   }

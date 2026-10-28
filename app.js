@@ -1,6 +1,6 @@
 'use strict';
 
-// HIS form mô phỏng. Mọi tọa độ tính theo pixel tương đối với khung 1020 × 514.
+// HIS form mô phỏng. Tọa độ gốc được giãn ngang để tạo khoảng cách giữa các trường.
 // Các control là <input>, <select>, <button> HTML THẬT, không phải ảnh nền.
 (() => {
   const form = document.getElementById('registration-form');
@@ -16,9 +16,10 @@
   let records = [];
 
   function pos(el, x, y, w, h) {
-    el.style.left = `${x}px`;
+    const field = el.matches('input:not([type=checkbox]), select');
+    el.style.left = `${x * 1.15 + (field ? 2 : 0)}px`;
     el.style.top = `${y}px`;
-    if (w !== undefined) el.style.width = `${w}px`;
+    if (w !== undefined) el.style.width = `${w * 1.15 - (field ? 4 : 0)}px`;
     if (h !== undefined) el.style.height = `${h}px`;
     return el;
   }
